@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <h1> Welcome to MusicApp!!! </h1>
+
+  <div>
+    <% if current_user.nil? %>
+      <a href="<%= new_session_url %>">Log In</a>
+      <br>
+      <a href="<%= new_user_url %>">Create an Account</a>
+    <% else %>
+      <%= current_user.email %>
+    <% end %>
+  <div>
+
+  <form action="<%= session_url %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Log Out">
+  </form>
+  
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
